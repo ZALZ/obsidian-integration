@@ -127,16 +127,16 @@ export class MyBaseClient implements Client {
 						? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE
 						: undefined,
 					...this.config.baseRequestConfig?.headers,
-					Authorization:
-						await AuthenticationService.getAuthenticationToken(
-							this.config.authentication,
-							{
-								// eslint-disable-next-line @typescript-eslint/naming-convention
-								baseURL: this.config.host,
-								url: `${this.config.host}${this.urlSuffix}`,
-								method: requestConfig.method ?? "GET",
-							}
-						),
+					Authorization: `Bearer ${prefs.token}`,
+						// await AuthenticationService.getAuthenticationToken(
+						//	this.config.authentication,
+						//	{
+						//		// eslint-disable-next-line @typescript-eslint/naming-convention
+						//		baseURL: this.config.host,
+						//		url: `${this.config.host}${this.urlSuffix}`,
+						//		method: requestConfig.method ?? "GET",
+						//	}
+						// ),
 					...requestConfig.headers,
 					"Content-Type": requestContentType,
 					...requestBody[0],
